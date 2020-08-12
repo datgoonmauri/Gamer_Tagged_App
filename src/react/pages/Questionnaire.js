@@ -2,7 +2,8 @@ import React from "react";
 import quizQuestions from "../api/quizQuestions";
 import Quiz from "../components/Quiz";
 import Result from "../components/Result";
-
+import { Button } from "antd";
+import "./Questionnaire.css";
 
 class Questionnaire extends React.Component {
   constructor(props) {
@@ -111,21 +112,26 @@ class Questionnaire extends React.Component {
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
       />
-      
     );
   }
 
   renderResult() {
-    return <Result quizResult={this.state.result} />;
+    return (
+      <div style={{ textAlign: "center" }}>
+        <Result quizResult={this.state.result} />
+        <Button type="primary" className="toMatches" href="/matches">
+          {" "}
+          See Your Matches!{" "}
+        </Button>
+      </div>
+    );
   }
-
-
 
   render() {
     return (
       <div>
+        <h1> Questionnaire </h1>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
-       
       </div>
     );
   }
